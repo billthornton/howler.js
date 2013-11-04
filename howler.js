@@ -404,7 +404,10 @@
             node.currentTime = pos;
             node.muted = Howler._muted;
             node.volume = self._volume * Howler.volume();
-            setTimeout(function() { node.play(); }, 0);
+            setTimeout(function() { 
+              node.play();
+              node.currentTime = pos;
+              }, 20);
           } else {
             self._clearEndTimer(timerId);
 
