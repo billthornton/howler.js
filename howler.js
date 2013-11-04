@@ -319,12 +319,8 @@
         sprite = '_default';
       }
 
-      // if the sound hasn't been loaded, add it to the event queue
+      // sound hasn't been loaded
       if (!self._loaded) {
-        self.on('load', function() {
-          self.play(sprite, callback);
-        });
-
         return self;
       }
 
@@ -445,12 +441,8 @@
     pause: function(id, timerId) {
       var self = this;
 
-      // if the sound hasn't been loaded, add it to the event queue
+      // sound hasn't been loaded
       if (!self._loaded) {
-        self.on('play', function() {
-          self.pause(id);
-        });
-
         return self;
       }
 
@@ -492,12 +484,8 @@
     stop: function(id, timerId) {
       var self = this;
 
-      // if the sound hasn't been loaded, add it to the event queue
+      // if the sound hasn't been loaded
       if (!self._loaded) {
-        self.on('play', function() {
-          self.stop(id);
-        });
-
         return self;
       }
 
@@ -538,12 +526,8 @@
     mute: function(id) {
       var self = this;
 
-      // if the sound hasn't been loaded, add it to the event queue
+      // if the sound hasn't been loaded
       if (!self._loaded) {
-        self.on('play', function() {
-          self.mute(id);
-        });
-
         return self;
       }
 
@@ -567,13 +551,9 @@
     unmute: function(id) {
       var self = this;
 
-      // if the sound hasn't been loaded, add it to the event queue
+      // if the sound hasn't been loaded
       if (!self._loaded) {
-        self.on('play', function() {
-          self.unmute(id);
-        });
-
-        return self;
+          return self;
       }
 
       var activeNode = (id) ? self._nodeById(id) : self._activeNode();
@@ -603,12 +583,8 @@
       if (vol >= 0 && vol <= 1) {
         self._volume = vol;
 
-        // if the sound hasn't been loaded, add it to the event queue
+        // if the sound hasn't been loaded
         if (!self._loaded) {
-          self.on('play', function() {
-            self.volume(vol, id);
-          });
-
           return self;
         }
 
@@ -673,13 +649,9 @@
     pos: function(pos, id) {
       var self = this;
 
-      // if the sound hasn't been loaded, add it to the event queue
+      // if the sound hasn't been loaded return 0
       if (!self._loaded) {
-        self.on('load', function() {
-          self.pos(pos);
-        });
-
-        return typeof pos === 'number' ? self : self._pos || 0;
+        return 0;
       }
 
       // make sure we are dealing with a number for pos
@@ -737,13 +709,9 @@
       y = (typeof y === 'undefined' || !y) ? 0 : y;
       z = (typeof z === 'undefined' || !z) ? -0.5 : z;
 
-      // if the sound hasn't been loaded, add it to the event queue
+      // The sound hasn't been loaded
       if (!self._loaded) {
-        self.on('play', function() {
-          self.pos3d(x, y, z, id);
-        });
-
-        return self;
+          return self;
       }
 
       if (x >= 0 || x < 0) {
@@ -777,12 +745,8 @@
         steps = diff / 0.01,
         stepTime = len / steps;
 
-      // if the sound hasn't been loaded, add it to the event queue
+      // The sound hasn't been loaded
       if (!self._loaded) {
-        self.on('load', function() {
-          self.fade(from, to, len, callback, id);
-        });
-
         return self;
       }
 
